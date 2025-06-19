@@ -19,8 +19,7 @@ ffi_ada_dart_test/
 │   │
 │   ├── Build Scripts
 │   │   ├── Makefile               # Make-based build system
-│   │   ├── build_shared.sh        # Shell script for building shared library
-│   │   └── build_shared_library.sh # Alternative build script
+│   │   └── build_shared_library.sh # Shell script for building shared library
 │   │
 │   └── Build Artifacts
 │       ├── libada_math.so         # Shared library for C/FFI usage
