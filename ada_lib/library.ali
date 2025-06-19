@@ -1,0 +1,76 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+
+U library%b		library.adb		0f0b3dd8 NE OO PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+
+U library%s		library.ads		0df6eca8 EE NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.elementary_functions%s  a-nuelfu.ads  a-nuelfu.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D library.ads		20250619061242 d1edd69f library%s
+D library.adb		20250619061045 dee6eb47 library%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-parame.ads		20240904144414 1f39ba92 system.parameters%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+G a e
+G c Z s b [add library 5 13 none]
+G c Z s b [subtract library 6 13 none]
+G c Z s b [multiply library 7 13 none]
+G c Z s b [divide library 8 13 none]
+G c Z s b [square_root library 9 13 none]
+G c Z s b [power library 10 13 none]
+G c Z s b [absolute_value library 11 13 none]
+G c Z s b [maximum library 12 13 none]
+G c Z s b [minimum library 13 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 7|1r6 8|31r14 36r14
+X 3 a-numeri.ads
+16K13*Numerics 35e17 7|1r10 8|31r18 36r18
+X 4 a-nuelfu.ads
+18K22*Elementary_Functions[5|39] 7|1w19 8|31r27 36r27
+X 5 a-ngelfu.ads
+53V13*Sqrt{float} 8|31s48[4|18]
+87V14*"**"{float} 8|36s49[4|18]
+X 7 library.ads
+3K9*Library 15l5 15e12 8|1b14 62l5 62t12
+5V13*Add{float} 5>17 5>20 8|3b13 6l8 6t11
+5f17 A{float} 8|3b17 5r14
+5f20 B{float} 8|3b20 5r18
+6V13*Subtract{float} 6>22 6>25 8|8b13 11l8 11t16
+6f22 A{float} 8|8b22 10r14
+6f25 B{float} 8|8b25 10r18
+7V13*Multiply{float} 7>22 7>25 8|13b13 16l8 16t16
+7f22 A{float} 8|13b22 15r14
+7f25 B{float} 8|13b25 15r18
+8V13*Divide{float} 8>20 8>23 8|18b13 24l8 24t14
+8f20 A{float} 8|18b20 23r14
+8f23 B{float} 8|18b23 20r10 23r18
+9V13*Square_Root{float} 9>25 8|26b13 32l8 32t19
+9f25 X{float} 8|26b25 28r10 31r53
+10V13*Power{float} 10>19 10>25 8|34b13 37l8 37t13
+10f19 Base{float} 8|34b19 36r53
+10f25 Exponent{float} 8|34b25 36r59
+11V13*Absolute_Value{float} 11>28 8|39b13 42l8 42t22
+11f28 X{float} 8|39b28 41r18
+12V13*Maximum{float} 12>21 12>24 8|44b13 51l8 51t15
+12f21 A{float} 8|44b21 46r10 47r17
+12f24 B{float} 8|44b24 46r14 49r17
+13V13*Minimum{float} 13>21 13>24 8|53b13 60l8 60t15
+13f21 A{float} 8|53b21 55r10 56r17
+13f24 B{float} 8|53b24 55r14 58r17
+

@@ -1,0 +1,102 @@
+V "GNAT Lib v13"
+M P W=b
+P ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_DYNAMIC_SIZED_OBJECTS
+
+U test_library%b	test_library.adb	fa671d8a NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W library%s		library.adb		library.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.img_flt%s	s-imgflt.ads		s-imgflt.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-assert.ads		20240521074737 ba465f5c ada.assertions%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nubinu.ads		20240521074738 93f1f3d1 ada.numerics.big_numbers%s
+D a-nbnbig.ads		20240521074738 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
+D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D library.ads		20250619061242 d1edd69f library%s
+D system.ads		20240521074738 426dafb8 system%s
+D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
+D s-casuti.ads		20240521074738 cf13d755 system.case_util%s
+D s-conca2.ads		20240521074738 b5fb73f7 system.concat_2%s
+D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-imager.ads		20240521074738 45c7157d system.image_r%s
+D s-imageu.ads		20240521074738 631c6ed0 system.image_u%s
+D s-imgflt.ads		20240521074738 d12816b5 system.img_flt%s
+D s-imguns.ads		20240521074738 7867236f system.img_uns%s
+D s-parame.ads		20240904144414 1f39ba92 system.parameters%s
+D s-powflt.ads		20240521074738 a51ab9b8 system.powten_flt%s
+D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
+D s-valuns.ads		20240521074738 e8a1f424 system.val_uns%s
+D s-valuti.ads		20240521074738 fcd603d8 system.val_util%s
+D s-valueu.ads		20240521074738 18770347 system.value_u%s
+D s-vauspe.ads		20240521074738 a67b2f28 system.value_u_spec%s
+D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
+D s-widuns.ads		20240521074738 866a5800 system.wid_uns%s
+D s-widthu.ads		20240521074738 b32f15e2 system.width_u%s
+D test_library.adb	20250619061513 77a6aa46 test_library%b
+G a e
+G c Z b b [test_library standard 4 11 none]
+G r c none [test_library standard 4 11 none] [add library 5 13 none]
+G r c none [test_library standard 4 11 none] [subtract library 6 13 none]
+G r c none [test_library standard 4 11 none] [multiply library 7 13 none]
+G r c none [test_library standard 4 11 none] [divide library 8 13 none]
+G r c none [test_library standard 4 11 none] [square_root library 9 13 none]
+G r c none [test_library standard 4 11 none] [power library 10 13 none]
+G r c none [test_library standard 4 11 none] [absolute_value library 11 13 none]
+G r c none [test_library standard 4 11 none] [maximum library 12 13 none]
+G r c none [test_library standard 4 11 none] [minimum library 13 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 49|1r6 5r8
+X 15 a-textio.ads
+58K13*Text_IO 787e16 49|1w10 5r12
+566U14*Put_Line 49|9s4 10s4 14s4 18s4 22s4 26s4 30s4 34s4 38s4 42s4 46s4
+. 48s4 49s4 53s7 55s7
+X 19 library.ads
+3K9*Library 15e12 49|2w6 13r14 17r14 21r14 25r14 29r14 33r14 37r14 41r14
+. 45r14
+5V13*Add{float} 49|13s22
+6V13*Subtract{float} 49|17s22
+7V13*Multiply{float} 49|21s22
+8V13*Divide{float} 49|25s22
+9V13*Square_Root{float} 49|29s22
+10V13*Power{float} 49|33s22
+11V13*Absolute_Value{float} 49|37s22
+12V13*Maximum{float} 49|41s22
+13V13*Minimum{float} 49|45s22
+X 49 test_library.adb
+4U11*Test_Library 4b11 56l5 56t17
+7f4 Result{float} 13m4 14r47 17m4 18r52 21m4 22r52 25m4 26r50 29m4 30r50
+. 33m4 34r48 37m4 38r54 41m4 42r52 45m4 46r52
+
