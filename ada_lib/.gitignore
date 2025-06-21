@@ -1,0 +1,56 @@
+# Ada compilation artifacts
+*.o
+*.ali
+*.obj
+*.exe
+*.dll
+*.dylib
+*.a
+*.lib
+
+# Ada specific build files
+b~*.ad[sb]
+b~*.adb
+b~*.ads
+
+# GNAT project build directories
+.build/
+build/
+obj/
+lib/
+
+# Shared libraries (keep or ignore based on preference)
+# Uncomment the next line if you want to ignore compiled libraries
+# *.so
+
+# Ada runtime and debug files
+*.stackdump
+core.*
+
+# Test executables
+test_library
+test_c
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Generated files from sync tools
+ada_math_generated.h
+ada_math_generated.c
+
+# Log files
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db

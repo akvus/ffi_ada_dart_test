@@ -1,0 +1,60 @@
+# Project-wide gitignore for Ada-Flutter FFI Test
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation build artifacts
+/docs/_build/
+/docs/.doctrees/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Archive files (unless needed)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Python cache (if using any Python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Node modules (if using any Node.js tools)
+node_modules/
+.npm
+
+# Environment files (may contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Build outputs that should be regenerated
+*.exe
+*.out
+*.app
