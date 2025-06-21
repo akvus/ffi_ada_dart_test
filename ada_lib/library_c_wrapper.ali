@@ -1,0 +1,81 @@
+V "GNAT Lib v13"
+A -fPIC
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+
+U library_c_wrapper%b	library_c_wrapper.adb	3a68ee1d NE OO PK
+W library%s		library.adb		library.ali
+
+U library_c_wrapper%s	library_c_wrapper.ads	e94b1b47 EE NE OO PK
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D library.ads		20250619061242 d1edd69f library%s
+D library_c_wrapper.ads	20250619062701 e94b1b47 library_c_wrapper%s
+D library_c_wrapper.adb	20250619061540 02ce23c5 library_c_wrapper%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+G a e
+G c Z s b [add_c library_c_wrapper 4 13 none]
+G c Z s b [subtract_c library_c_wrapper 7 13 none]
+G c Z s b [multiply_c library_c_wrapper 10 13 none]
+G c Z s b [divide_c library_c_wrapper 13 13 none]
+G c Z s b [square_root_c library_c_wrapper 16 13 none]
+G c Z s b [power_c library_c_wrapper 19 13 none]
+G c Z s b [absolute_value_c library_c_wrapper 22 13 none]
+G c Z s b [maximum_c library_c_wrapper 25 13 none]
+G c Z s b [minimum_c library_c_wrapper 28 13 none]
+G r c none [add_c library_c_wrapper 4 13 none] [add library 5 13 none]
+G r c none [subtract_c library_c_wrapper 7 13 none] [subtract library 6 13 none]
+G r c none [multiply_c library_c_wrapper 10 13 none] [multiply library 7 13 none]
+G r c none [divide_c library_c_wrapper 13 13 none] [divide library 8 13 none]
+G r c none [square_root_c library_c_wrapper 16 13 none] [square_root library 9 13 none]
+G r c none [power_c library_c_wrapper 19 13 none] [power library 10 13 none]
+G r c none [absolute_value_c library_c_wrapper 22 13 none] [absolute_value library 11 13 none]
+G r c none [maximum_c library_c_wrapper 25 13 none] [maximum library 12 13 none]
+G r c none [minimum_c library_c_wrapper 28 13 none] [minimum library 13 13 none]
+X 6 library.ads
+3K9*Library 15e12 8|1w6 7r14 12r14 17r14 22r14 27r14 32r14 37r14 42r14 47r14
+5V13*Add{float} 8|7s22
+6V13*Subtract{float} 8|12s22
+7V13*Multiply{float} 8|17s22
+8V13*Divide{float} 8|22s22
+9V13*Square_Root{float} 8|27s22
+10V13*Power{float} 8|32s22
+11V13*Absolute_Value{float} 8|37s22
+12V13*Maximum{float} 8|42s22
+13V13*Minimum{float} 8|47s22
+X 7 library_c_wrapper.ads
+1K9*Library_C_Wrapper 31l5 31e22 8|3b14 50l5 50t22
+4V13*Add_C{float} 4>19 4>22 8|5b13 8l8 8t13
+4f19 A{float} 8|5b19 7r26
+4f22 B{float} 8|5b22 7r29
+7V13*Subtract_C{float} 7>24 7>27 8|10b13 13l8 13t18
+7f24 A{float} 8|10b24 12r31
+7f27 B{float} 8|10b27 12r34
+10V13*Multiply_C{float} 10>24 10>27 8|15b13 18l8 18t18
+10f24 A{float} 8|15b24 17r31
+10f27 B{float} 8|15b27 17r34
+13V13*Divide_C{float} 13>22 13>25 8|20b13 23l8 23t16
+13f22 A{float} 8|20b22 22r29
+13f25 B{float} 8|20b25 22r32
+16V13*Square_Root_C{float} 16>27 8|25b13 28l8 28t21
+16f27 X{float} 8|25b27 27r34
+19V13*Power_C{float} 19>21 19>27 8|30b13 33l8 33t15
+19f21 Base{float} 8|30b21 32r28
+19f27 Exponent{float} 8|30b27 32r34
+22V13*Absolute_Value_C{float} 22>30 8|35b13 38l8 38t24
+22f30 X{float} 8|35b30 37r37
+25V13*Maximum_C{float} 25>23 25>26 8|40b13 43l8 43t17
+25f23 A{float} 8|40b23 42r30
+25f26 B{float} 8|40b26 42r33
+28V13*Minimum_C{float} 28>23 28>26 8|45b13 48l8 48t17
+28f23 A{float} 8|45b23 47r30
+28f26 B{float} 8|45b26 47r33
+

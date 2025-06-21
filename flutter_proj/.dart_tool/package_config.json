@@ -44,6 +44,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "ffi",
+      "rootUri": "file:///home/akvus/.pub-cache/hosted/pub.dev/ffi-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///home/akvus/fvm/versions/3.32.1/packages/flutter",
       "packageUri": "lib/",
