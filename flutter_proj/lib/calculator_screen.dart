@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:math' as math;
+import 'ada_math_ffi.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -172,22 +172,22 @@ class _CalculatorScreenState extends State<CalculatorScreen> with TickerProvider
     return result.toStringAsFixed(6).replaceAll(RegExp(r'0+$'), '').replaceAll(RegExp(r'\.$'), '');
   }
 
-  // Math operations
-  double _add(double a, double b) => a + b;
-  double _subtract(double a, double b) => a - b;
-  double _multiply(double a, double b) => a * b;
+  // Math operations using Ada library via FFI
+  double _add(double a, double b) => adaMath.add(a, b);
+  double _subtract(double a, double b) => adaMath.subtract(a, b);
+  double _multiply(double a, double b) => adaMath.multiply(a, b);
   double _divide(double a, double b) {
     if (b == 0) throw Exception('Division by zero');
-    return a / b;
+    return adaMath.divide(a, b);
   }
   double _squareRoot(double x) {
     if (x < 0) throw Exception('Square root of negative number');
-    return math.sqrt(x);
+    return adaMath.squareRoot(x);
   }
-  double _power(double base, double exponent) => math.pow(base, exponent).toDouble();
-  double _absoluteValue(double x) => x.abs();
-  double _maximum(double a, double b) => math.max(a, b);
-  double _minimum(double a, double b) => math.min(a, b);
+  double _power(double base, double exponent) => adaMath.power(base, exponent);
+  double _absoluteValue(double x) => adaMath.absoluteValue(x);
+  double _maximum(double a, double b) => adaMath.maximum(a, b);
+  double _minimum(double a, double b) => adaMath.minimum(a, b);
 
   Widget _buildButton(
     String text, {
@@ -278,7 +278,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> with TickerProvider
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Calculator',
+                          'Calculator (Ada-powered)',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.7),
                             fontSize: 18,
@@ -292,7 +292,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> with TickerProvider
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            'Standard',
+                            'Ada FFI',
                             style: TextStyle(
                               color: Colors.white.withOpacity(0.8),
                               fontSize: 12,
