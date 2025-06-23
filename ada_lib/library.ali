@@ -7,7 +7,7 @@ RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
 RV NO_STANDARD_STORAGE_POOLS
 
-U library%b		library.adb		0f0b3dd8 NE OO PK
+U library%b		library.adb		6e14c728 NE OO PK
 Z ada.exceptions%s	a-except.adb		a-except.ali
 
 U library%s		library.ads		0df6eca8 EE NE OO PK
@@ -22,7 +22,7 @@ D a-nuelfu.ads		20240521074738 dc1b3a37 ada.numerics.elementary_functions%s
 D a-ngelfu.ads		20240521074738 58d8ffc8 ada.numerics.generic_elementary_functions%s
 D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
 D library.ads		20250619061242 d1edd69f library%s
-D library.adb		20250619061045 dee6eb47 library%b
+D library.adb		20250622055119 bff911b7 library%b
 D system.ads		20240521074738 426dafb8 system%s
 D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
 D s-parame.ads		20240904144414 1f39ba92 system.parameters%s
@@ -50,8 +50,8 @@ X 5 a-ngelfu.ads
 X 7 library.ads
 3K9*Library 15l5 15e12 8|1b14 62l5 62t12
 5V13*Add{float} 5>17 5>20 8|3b13 6l8 6t11
-5f17 A{float} 8|3b17 5r14
-5f20 B{float} 8|3b20 5r18
+5f17 A{float} 8|3b17 5r14 5r18
+5f20 B{float} 8|3b20
 6V13*Subtract{float} 6>22 6>25 8|8b13 11l8 11t16
 6f22 A{float} 8|8b22 10r14
 6f25 B{float} 8|8b25 10r18
