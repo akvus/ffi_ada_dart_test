@@ -2,7 +2,7 @@ package body Library is
 
    function Add(A, B : Float) return Float is
    begin
-      return A + A;
+      return A + B;
    end Add;
 
    function Subtract(A, B : Float) return Float is

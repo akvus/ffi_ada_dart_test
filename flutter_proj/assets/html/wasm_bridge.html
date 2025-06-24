@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada WASM Bridge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .loading { background-color: #fff3cd; color: #856404; }
+        .ready { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        #log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ada WASM Math Library Bridge</h1>
+        <div id="status" class="status loading">Loading WASM module...</div>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        // Logging utility
+        function log(message) {
+            console.log(message);
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // Status update utility
+        function updateStatus(message, type = 'loading') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + type;
+        }
+
+        // Global WASM module instance
+        let wasmModule = null;
+
+        // Ada WASM Math Library Bridge
+        class AdaMathBridge {
+            constructor() {
+                this.isReady = false;
+                this.wasmModule = null;
+            }
+
+            async initialize() {
+                try {
+                    log('Initializing Ada WASM module...');
+                    
+                    // Load the real WASM module
+                    this.wasmModule = await this.loadRealWasm();
+                    
+                    this.isReady = true;
+                    updateStatus('Ada WASM module loaded successfully!', 'ready');
+                    log('All Ada math functions are ready for use');
+                    
+                    // Notify Flutter that WASM is ready
+                    this.notifyFlutter('wasm_ready', { status: 'ready' });
+                    
+                } catch (error) {
+                    log('Error initializing WASM: ' + error.message);
+                    updateStatus('Failed to load WASM module: ' + error.message, 'error');
+                    this.notifyFlutter('wasm_error', { error: error.message });
+                }
+            }
+
+            // Load the real Ada WASM module
+            async loadRealWasm() {
+                log('Loading Ada WASM module from assets...');
+                
+                try {
+                    // Fetch the WASM file
+                    const wasmPath = 'assets/wasm/ada_math.wasm';
+                    const response = await fetch(wasmPath);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch WASM module: ${response.status} ${response.statusText}`);
+                    }
+                    
+                    const wasmBytes = await response.arrayBuffer();
+                    log(`WASM module size: ${wasmBytes.byteLength} bytes`);
+                    
+                    // Create import object for Ada runtime requirements
+                    const importObject = {
+                        env: {
+                            // Memory for Ada runtime (if needed)
+                            memory: new WebAssembly.Memory({ initial: 256, maximum: 256 }),
+                            
+                            // Math functions that Ada might need
+                            sqrt: Math.sqrt,
+                            pow: Math.pow,
+                            
+                            // Potential Ada runtime functions (adjust based on actual requirements)
+                            __gnat_last_chance_handler: (file, line) => {
+                                console.error(`Ada runtime error at ${file}:${line}`);
+                            },
+                            
+                            // Add more imports as needed based on AdaWebPack requirements
+                        },
+                        wasi_snapshot_preview1: {
+                            // WASI imports if AdaWebPack uses WASI
+                            proc_exit: (code) => {
+                                console.log(`WASI proc_exit called with code: ${code}`);
+                            },
+                            fd_write: (fd, iovs_ptr, iovs_len, nwritten_ptr) => {
+                                console.log('WASI fd_write called');
+                                return 0;
+                            },
+                            // Add more WASI imports if needed
+                        }
+                    };
+                    
+                    // Instantiate the WASM module
+                    log('Instantiating WASM module...');
+                    const wasmModule = await WebAssembly.instantiate(wasmBytes, importObject);
+                    
+                    // Verify exports
+                    const exports = wasmModule.instance.exports;
+                    const requiredFunctions = [
+                        'wasm_add', 'wasm_subtract', 'wasm_multiply', 'wasm_divide',
+                        'wasm_sqrt', 'wasm_power', 'wasm_abs', 'wasm_max', 'wasm_min',
+                        'wasm_is_valid_division', 'wasm_is_valid_sqrt'
+                    ];
+                    
+                    for (const funcName of requiredFunctions) {
+                        if (typeof exports[funcName] !== 'function') {
+                            throw new Error(`Required function '${funcName}' not found in WASM exports`);
+                        }
+                    }
+                    
+                    log('All required functions found in WASM module');
+                    return exports;
+                    
+                } catch (error) {
+                    log(`Error loading WASM: ${error.message}`);
+                    throw error;
+                }
+            }
+
+            // Math function wrappers
+            add(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_add(a, b);
+                log(`add(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            subtract(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_subtract(a, b);
+                log(`subtract(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            multiply(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_multiply(a, b);
+                log(`multiply(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            divide(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                if (!this.wasmModule.wasm_is_valid_division(b)) {
+                    throw new Error('Division by zero');
+                }
+                const result = this.wasmModule.wasm_divide(a, b);
+                log(`divide(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            sqrt(x) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                if (!this.wasmModule.wasm_is_valid_sqrt(x)) {
+                    throw new Error('Square root of negative number');
+                }
+                const result = this.wasmModule.wasm_sqrt(x);
+                log(`sqrt(${x}) = ${result}`);
+                return result;
+            }
+
+            power(base, exp) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_power(base, exp);
+                log(`power(${base}, ${exp}) = ${result}`);
+                return result;
+            }
+
+            abs(x) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_abs(x);
+                log(`abs(${x}) = ${result}`);
+                return result;
+            }
+
+            max(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_max(a, b);
+                log(`max(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            min(a, b) {
+                if (!this.isReady) throw new Error('WASM module not ready');
+                const result = this.wasmModule.wasm_min(a, b);
+                log(`min(${a}, ${b}) = ${result}`);
+                return result;
+            }
+
+            // Flutter communication
+            notifyFlutter(type, data) {
+                if (window.flutter_inappwebview) {
+                    // For flutter_inappwebview
+                    window.flutter_inappwebview.callHandler('wasmMessage', {
+                        type: type,
+                        data: data
+                    });
+                } else if (window.webkit && window.webkit.messageHandlers) {
+                    // For iOS WebKit
+                    window.webkit.messageHandlers.wasmMessage.postMessage({
+                        type: type,
+                        data: data
+                    });
+                } else {
+                    // Fallback - post message to parent window
+                    window.parent.postMessage({
+                        type: type,
+                        data: data
+                    }, '*');
+                }
+            }
+        }
+
+        // Global bridge instance
+        const adaMathBridge = new AdaMathBridge();
+
+        // JavaScript interface for Flutter
+        window.AdaMath = {
+            add: (a, b) => adaMathBridge.add(a, b),
+            subtract: (a, b) => adaMathBridge.subtract(a, b),
+            multiply: (a, b) => adaMathBridge.multiply(a, b),
+            divide: (a, b) => adaMathBridge.divide(a, b),
+            sqrt: (x) => adaMathBridge.sqrt(x),
+            power: (base, exp) => adaMathBridge.power(base, exp),
+            abs: (x) => adaMathBridge.abs(x),
+            max: (a, b) => adaMathBridge.max(a, b),
+            min: (a, b) => adaMathBridge.min(a, b),
+            isReady: () => adaMathBridge.isReady
+        };
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            log('Page loaded, initializing Ada WASM bridge...');
+            adaMathBridge.initialize();
+        });
+
+        // Handle messages from Flutter
+        window.addEventListener('message', (event) => {
+            log('Received message from Flutter: ' + JSON.stringify(event.data));
+            
+            try {
+                const { action, params } = event.data;
+                let result;
+
+                switch (action) {
+                    case 'add':
+                        result = window.AdaMath.add(params.a, params.b);
+                        break;
+                    case 'subtract':
+                        result = window.AdaMath.subtract(params.a, params.b);
+                        break;
+                    case 'multiply':
+                        result = window.AdaMath.multiply(params.a, params.b);
+                        break;
+                    case 'divide':
+                        result = window.AdaMath.divide(params.a, params.b);
+                        break;
+                    case 'sqrt':
+                        result = window.AdaMath.sqrt(params.x);
+                        break;
+                    case 'power':
+                        result = window.AdaMath.power(params.base, params.exp);
+                        break;
+                    case 'abs':
+                        result = window.AdaMath.abs(params.x);
+                        break;
+                    case 'max':
+                        result = window.AdaMath.max(params.a, params.b);
+                        break;
+                    case 'min':
+                        result = window.AdaMath.min(params.a, params.b);
+                        break;
+                    default:
+                        throw new Error('Unknown action: ' + action);
+                }
+
+                // Send result back to Flutter
+                window.parent.postMessage({
+                    type: 'result',
+                    requestId: event.data.requestId,
+                    result: result
+                }, '*');
+
+            } catch (error) {
+                log('Error processing request: ' + error.message);
+                window.parent.postMessage({
+                    type: 'error',
+                    requestId: event.data.requestId,
+                    error: error.message
+                }, '*');
+            }
+        });
+
+        log('Ada WASM Bridge JavaScript loaded');
+    </script>
+</body>
+</html>
